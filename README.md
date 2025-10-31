@@ -1,5 +1,5 @@
 # Лабораторні з реінжинірингу (8×)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=labu&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=labu)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=labu&metric=coverage)](https://sonarcloud.io/summary/new_code?id=labu)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=labu&metric=bugs)](https://sonarcloud.io/summary/new_code?id=labu)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=labu&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=labu)
