@@ -1,12 +1,12 @@
 # Лабораторні з реінжинірингу (8×)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ppanchen_NetSdrClient&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ppanchen_NetSdrClient)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ppanchen_NetSdrClient&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ppanchen_NetSdrClient)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=ppanchen_NetSdrClient&metric=bugs)](https://sonarcloud.io/summary/new_code?id=ppanchen_NetSdrClient)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ppanchen_NetSdrClient&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=ppanchen_NetSdrClient)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=ppanchen_NetSdrClient&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=ppanchen_NetSdrClient)
-[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=ppanchen_NetSdrClient&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=ppanchen_NetSdrClient)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=ppanchen_NetSdrClient&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=ppanchen_NetSdrClient)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=ppanchen_NetSdrClient&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=ppanchen_NetSdrClient)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
 
 
 Цей репозиторій використовується для курсу **реінжиніринг ПЗ**. 
