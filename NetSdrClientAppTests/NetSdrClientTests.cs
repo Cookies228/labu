@@ -155,5 +155,68 @@ namespace NetSdrClientAppTests
             });
         }
 
+        [Test]
+        public async Task SendTcpRequest_ReturnsNull_WhenNotConnected()
+        {
+            // Arrange
+            var method = typeof(NetSdrClient).GetMethod("SendTcpRequest", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var msg = new byte[] { 0x01, 0x02 };
+            _tcpMock.Setup(tcp => tcp.Connected).Returns(false);
+
+            // Act
+            var task = (Task<byte[]?>)method!.Invoke(_client, new object[] { msg })!;
+            var result = await task;
+
+            // Assert
+            Assert.That(result, Is.Null);
+        }
+
+                [Test]
+        public async Task ChangeFrequencyAsync_SendsMessage_WhenConnected()
+        {
+            // Arrange
+            await _client.ConnectAsync();
+            long frequency = 145000000; // 145 MHz
+            int channel = 1;
+
+            // Act
+            await _client.ChangeFrequencyAsync(frequency, channel);
+
+            // Assert
+            _tcpMock.Verify(tcp => tcp.SendMessageAsync(It.IsAny<byte[]>()), Times.AtLeastOnce);
+        }
+
+        [Test]
+        public async Task ChangeFrequencyAsync_DoesNothing_WhenNotConnected()
+        {
+            // Arrange
+            _tcpMock.Setup(tcp => tcp.Connected).Returns(false);
+
+            // Act
+            await _client.ChangeFrequencyAsync(144000000, 0);
+
+            // Assert
+            _tcpMock.Verify(tcp => tcp.SendMessageAsync(It.IsAny<byte[]>()), Times.Never);
+        }
+
+        [Test]
+        public async Task SendTcpRequest_SendsMessage_WhenConnected()
+        {
+            // Arrange
+            var method = typeof(NetSdrClient).GetMethod("SendTcpRequest",
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var msg = new byte[] { 0xAA, 0xBB };
+            _tcpMock.Setup(tcp => tcp.Connected).Returns(true);
+
+            // Act
+            var task = (Task<byte[]?>)method!.Invoke(_client, new object[] { msg })!;
+            var result = await task;
+
+            // Assert
+            _tcpMock.Verify(tcp => tcp.Connected, Times.AtLeastOnce);
+        }
+
+
+
     }
 }
