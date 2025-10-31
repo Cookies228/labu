@@ -1,12 +1,12 @@
 # Лабораторні з реінжинірингу (8×)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=labu&metric=coverage)](https://sonarcloud.io/summary/new_code?id=labu)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=labu&metric=bugs)](https://sonarcloud.io/summary/new_code?id=labu)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=labu&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=labu)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=labu&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=labu)
-[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=labu&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=labu)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=labu&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=labu)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=labu&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=labu)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Cookies228_labu&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Cookies228_labu)
 
 
 Цей репозиторій використовується для курсу **реінжиніринг ПЗ**. 
