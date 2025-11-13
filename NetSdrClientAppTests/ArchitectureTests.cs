@@ -24,12 +24,15 @@ namespace NetSdrClientAppTests
         public void Messages_Should_Not_Depend_On_Networking()
         {
             var result = Types.InAssembly(typeof(NetSdrClient).Assembly)
+                .That()
+                .ResideInNamespace("NetSdrClientApp.Messages")
                 .ShouldNot()
                 .HaveDependencyOn("NetSdrClientApp.Networking")
                 .GetResult();
 
             Assert.True(result.IsSuccessful, "Messages should not depend on Networking layer.");
         }
+
 
         [Fact]
         public void Tests_Should_Not_Depend_On_EchoTcpServer()
