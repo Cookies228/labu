@@ -24,22 +24,46 @@ public class EchoServer
 
     public async Task StartAsync()
     {
+        // ensure we have a non-cancelled CTS for internal usage
+        if (_cancellationTokenSource == null || _cancellationTokenSource.IsCancellationRequested)
+        {
+            _cancellationTokenSource?.Dispose();
+            _cancellationTokenSource = new CancellationTokenSource();
+        }
+
+        await StartAsyncInternal(_cancellationTokenSource.Token).ConfigureAwait(false);
+    }
+
+    // New overload for tests: allows caller to control server lifetime via CancellationToken
+    public async Task StartAsync(CancellationToken externalToken)
+    {
+        await StartAsyncInternal(externalToken).ConfigureAwait(false);
+    }
+
+    // Extracted internal implementation of the server loop — same behavior as before
+    private async Task StartAsyncInternal(CancellationToken token)
+    {
         _listener = new TcpListener(IPAddress.Any, _port);
         _listener.Start();
         Console.WriteLine($"Server started on port {_port}.");
 
-        while (!_cancellationTokenSource.Token.IsCancellationRequested)
+        while (!token.IsCancellationRequested)
         {
             try
             {
                 TcpClient client = await _listener.AcceptTcpClientAsync();
                 Console.WriteLine("Client connected.");
 
-                _ = Task.Run(() => HandleClientAsync(client, _cancellationTokenSource.Token));
+                _ = Task.Run(() => HandleClientAsync(client, token));
             }
             catch (ObjectDisposedException)
             {
                 // Listener has been closed
+                break;
+            }
+            catch (Exception ex) when (!(ex is OperationCanceledException))
+            {
+                Console.WriteLine($"Error in accept loop: {ex.Message}");
                 break;
             }
         }
@@ -77,10 +101,36 @@ public class EchoServer
 
     public void Stop()
     {
-        _cancellationTokenSource.Cancel();
-        _listener.Stop();
-        _cancellationTokenSource.Dispose();
-        Console.WriteLine("Server stopped.");
+        try
+        {
+            // cancel any internal token source
+            try
+            {
+                _cancellationTokenSource?.Cancel();
+            }
+            catch { /* swallow */ }
+
+            try
+            {
+                _listener?.Stop();
+            }
+            catch { /* swallow */ }
+
+            // dispose and nullify to allow future restarts
+            try
+            {
+                _cancellationTokenSource?.Dispose();
+            }
+            catch { /* swallow */ }
+
+            _cancellationTokenSource = new CancellationTokenSource();
+
+            Console.WriteLine("Server stopped.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error while stopping server: {ex.Message}");
+        }
     }
 
     public static async Task Main(string[] args)
