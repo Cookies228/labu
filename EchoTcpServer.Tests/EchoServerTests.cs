@@ -212,6 +212,80 @@ namespace EchoTcpServer.Tests
             }
         }
 
+        [Fact]
+        public async Task StartAsync_WithExternalCancellationToken_StartsAndStops()
+        {
+            var server = new EchoServer(5010);
+            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+            var serverTask = server.StartAsync(cts.Token);
+
+            // wait for server to start accepting connections
+            await Task.Delay(100);
+
+            // attempt connection
+            using (var client = new TcpClient())
+            {
+                var connectTask = client.ConnectAsync("127.0.0.1", 5010);
+                var completed = await Task.WhenAny(connectTask, Task.Delay(2000));
+                Assert.True(completed == connectTask && client.Connected);
+            }
+
+            // request shutdown
+            cts.Cancel();
+
+            // serverTask should complete shortly after cancellation
+            await serverTask;
+        }
+
+        [Fact]
+        public async Task Server_EchoesBackData()
+        {
+            var server = new EchoServer(5011);
+            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+
+            var serverTask = server.StartAsync(cts.Token);
+            await Task.Delay(100); // allow server to start
+
+            var payload = new byte[] { 0x01, 0x02, 0x03, 0x04 };
+            byte[] received = new byte[payload.Length];
+
+            using (var client = new TcpClient())
+            {
+                await client.ConnectAsync("127.0.0.1", 5011);
+                using var stream = client.GetStream();
+
+                await stream.WriteAsync(payload, 0, payload.Length);
+                var bytesRead = await stream.ReadAsync(received, 0, received.Length);
+
+                Assert.Equal(payload.Length, bytesRead);
+                Assert.Equal(payload, received);
+            }
+
+            cts.Cancel();
+            await serverTask;
+        }
+
+        [Fact]
+        public async Task Stop_CanBeCalledMultipleTimes_NoException()
+        {
+            var server = new EchoServer(5012);
+            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+            var serverTask = server.StartAsync(cts.Token);
+            await Task.Delay(100);
+
+            // Call Stop multiple times (idempotency)
+            server.Stop();
+            server.Stop();
+            server.Stop();
+
+            // Cancel token to allow background StartAsync to finish if still running
+            cts.Cancel();
+
+            await serverTask;
+        }
+
         public void Dispose()
         {
             // Cleanup
